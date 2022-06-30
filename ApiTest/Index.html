@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Weather API</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="Weather.js"></script>
+    <link rel="stylesheet" href="Weather.css">
+</head>
+
+<body>
+    <table class="topOfPage">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <div class="weather-container">
+                <p class="location"></p>
+                <img class="icon">
+                <p class="weather"></p>
+                <p class="temp"></p>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            <span class="degrees">&#176;F</span>
+            <label class="switch">
+                <input type="checkbox" id="degrees">
+                <span class="slider round"></span>
+              </label>
+            <span class="degrees">&#176;C</span>
+        </td>
+    </table>
+    <br><br><br><br>
+    <p class="description">Today's forecast</p>
+
+    <table class="cards">
+        <td>
+            <div class="card">
+                <img class="oneHourIcon" alt="icon" style="text-align: center">
+                <div class="container">
+                    <p class="oneHourTemp"></p>
+                    <p class="oneHourWeather"></p>
+                    <p class="oneHourTime"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card">
+                <img class="twoHourIcon" alt="icon" style="text-align: center">
+                <div class="container">
+                    <p class="twoHourTemp"></p>
+                    <p class="twoHourWeather"></p>
+                    <p class="twoHourTime"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card">
+                <img class="threeHourIcon" alt="icon" style="text-align: center">
+                <div class="container">
+                    <p class="threeHourTemp"></p>
+                    <p class="threeHourWeather"></p>
+                    <p class="threeHourTime"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card">
+                <img class="fourHourIcon" alt="icon" style="text-align: center">
+                <div class="container">
+                    <p class="fourHourTemp"></p>
+                    <p class="fourHourWeather"></p>
+                    <p class="fourHourTime"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card">
+                <img class="fiveHourIcon" alt="icon" style="text-align: center">
+                <div class="container">
+                    <p class="fiveHourTemp"></p>
+                    <p class="fiveHourWeather"></p>
+                    <p class="fiveHourTime"></p>
+                </div>
+            </div>
+        </td>
+    </table>
+</body>
+</html>
