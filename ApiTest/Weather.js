@@ -23,7 +23,7 @@ const success = (position) => {
             $(".weather").append(weather);
             $(".temp").append(temp);
 
-            //Sunset and sunrise
+            //Sunset and sunrise (Optional use)
             var sunriseIcon ="https://cdn.iconscout.com/icon/free/png-256/sunset-36-161352.png";
             var sunriseTime = data.forecast.forecastday[0].astro.sunrise;
             var sunsetTime = data.forecast.forecastday[0].astro.sunrise.sunset;
@@ -33,7 +33,6 @@ const success = (position) => {
             var maxTemp = Math.round(data.forecast.forecastday[0].day.maxtemp_f);
             var minTemp = Math.round(data.forecast.forecastday[0].day.mintemp_f);
             $(".tempRange").append(`${minTemp}&#176; ~ ${maxTemp}&#176;`);
-
 
             //One hour
             var time = currentTime + 1;
