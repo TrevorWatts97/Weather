@@ -9,12 +9,12 @@
 .temp {
     font-size: 25px;
     margin: 0;
-    font-weight: bold;
 }
 .location {
     font-size: 30px;
     margin: 0;
     font-weight: bold;
+    text-align: center;
 }
 
 .card {
@@ -23,6 +23,7 @@
     text-align: center;
     margin: 10px;
     width: auto;
+    border-radius: 15px;
 }
 
 .cards {
@@ -167,4 +168,17 @@
     font-size: 25px;
     transform: translateY(2px);
     font-weight: bold;
+}
+
+body {
+    font-family: sans-serif, Arial, Helvetica;
+    color: white;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(164,66,255,1) 0%, rgba(254,140,84,1) 100%);
+}
+
+.tempRange{
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
 }

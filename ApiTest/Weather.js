@@ -12,18 +12,11 @@ const success = (position) => {
         //This get the weather for the users location
         $.getJSON("https://api.weatherapi.com/v1/forecast.json?key=40ed3d1f1ead4a81b6d124237223006&q=Columbia&days=7&aqi=no&alerts=yes"+ location +"&aqi=no", 
         function(data){
-            var degree = "f";
-            if(document.getElementById('degrees').checked){
-                degree = "c";
-            } else {
-                degree = "f"
-            }
-
             //Current Weather
             var currentTime = new Date().getHours();
             console.log(data);
             var icon = "https:" + data.current.condition.icon;
-            var temp = "" + Math.round(data.current.temp_f) + "<span>&#176;</span>F";
+            var temp = "" + Math.round(data.current.temp_f) + "<span>&#176;</span>";
             var weather = data.current.condition.text;
             $(".icon").attr("src", icon);
             $(".location").append(location);
@@ -35,12 +28,20 @@ const success = (position) => {
             var sunriseTime = data.forecast.forecastday[0].astro.sunrise;
             var sunsetTime = data.forecast.forecastday[0].astro.sunrise.sunset;
 
+
+            //Todays temperature range
+            var maxTemp = Math.round(data.forecast.forecastday[0].day.maxtemp_f);
+            var minTemp = Math.round(data.forecast.forecastday[0].day.mintemp_f);
+            $(".tempRange").append(`${minTemp}&#176; ~ ${maxTemp}&#176;`);
+
+
             //One hour
             var time = currentTime + 1;
             var timing = getTime(time);
-            icon = "https:" + data.forecast.forecastday[0].hour[time].condition.icon;
-            temp = "" + Math.round(data.forecast.forecastday[0].hour[time].temp_f) + "<span>&#176;</span>F";
-            weather = data.forecast.forecastday[0].hour[time].condition.text;
+            var day = getDay(time);
+            icon = "https:" + day.hour[time].condition.icon;
+            temp = "" + Math.round(day.hour[time].temp_f) + "&#176;";
+            weather = day.hour[time].condition.text;
             $(".oneHourIcon").attr("src", icon);
             $(".oneHourTime").append(timing);
             $(".oneHourWeather").append(weather);
@@ -49,9 +50,10 @@ const success = (position) => {
             //two hours
             time = currentTime + 2;
             timing = getTime(time);
-            icon = "https:" + data.forecast.forecastday[0].hour[time].condition.icon;
-            temp = "" + Math.round(data.forecast.forecastday[0].hour[time].temp_f) + "<span>&#176;</span>F";
-            weather = data.forecast.forecastday[0].hour[time].condition.text;
+            day = getDay(time);
+            icon = "https:" + day.hour[time].condition.icon;
+            temp = "" + Math.round(day.hour[time].temp_f) + "&#176;";
+            weather = day.hour[time].condition.text;
             $(".twoHourIcon").attr("src", icon);
             $(".twoHourTime").append(timing);
             $(".twoHourWeather").append(weather);
@@ -60,9 +62,10 @@ const success = (position) => {
             //three hours
             time = currentTime + 3;
             timing = getTime(time);
-            icon = "https:" + data.forecast.forecastday[0].hour[time].condition.icon;
-            temp = "" + Math.round(data.forecast.forecastday[0].hour[time].temp_f) + "<span>&#176;</span>F";
-            weather = data.forecast.forecastday[0].hour[time].condition.text;
+            day = getDay(time);
+            icon = "https:" + day.hour[time].condition.icon;
+            temp = "" + Math.round(day.hour[time].temp_f) + "&#176;";
+            weather = day.hour[time].condition.text;
             $(".threeHourIcon").attr("src", icon);
             $(".threeHourTime").append(timing);
             $(".threeHourWeather").append(weather);
@@ -71,9 +74,10 @@ const success = (position) => {
             //four hours
             time = currentTime + 4;
             timing = getTime(time);
-            icon = "https:" + data.forecast.forecastday[0].hour[time].condition.icon;
-            temp = "" + Math.round(data.forecast.forecastday[0].hour[time].temp_f) + "<span>&#176;</span>F";
-            weather = data.forecast.forecastday[0].hour[time].condition.text;
+            day = getDay(time);
+            icon = "https:" + day.hour[time].condition.icon;
+            temp = "" + Math.round(day.hour[time].temp_f) + "&#176;";
+            weather = day.hour[time].condition.text;
             $(".fourHourIcon").attr("src", icon);
             $(".fourHourTime").append(timing);
             $(".fourHourWeather").append(weather);
@@ -81,10 +85,12 @@ const success = (position) => {
 
             //five hours
             time = currentTime + 5;
+            if(time > 23){time-=24}
             timing = getTime(time);
-            icon = "https:" + data.forecast.forecastday[0].hour[time].condition.icon;
-            temp = "" + Math.round(data.forecast.forecastday[0].hour[time].temp_f) + "<span>&#176;</span>F";
-            weather = data.forecast.forecastday[0].hour[time].condition.text;
+            day = getDay(time);
+            icon = "https:" + day.hour[time].condition.icon;
+            temp = "" + Math.round(day.hour[time].temp_f) + "&#176;";
+            weather = day.hour[time].condition.text;
             $(".fiveHourIcon").attr("src", icon);
             $(".fiveHourTime").append(timing);
             $(".fiveHourWeather").append(weather);
@@ -100,6 +106,14 @@ const success = (position) => {
                 }
                 timeValue += (time >= 12) ? " pm" : " am";
                 return timeValue;
+            }
+
+            function getDay(time){
+                if(time < 24){
+                    return data.forecast.forecastday[0];
+                } else {
+                    return data.forecast.forecastday[1];
+                }
             }
         });
     })
