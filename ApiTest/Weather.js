@@ -36,6 +36,7 @@ const success = (position) => {
 
             //One hour
             var time = currentTime + 1;
+			if(time > 23){time-=24}
             var timing = getTime(time);
             var day = getDay(time);
             icon = "https:" + day.hour[time].condition.icon;
@@ -48,6 +49,7 @@ const success = (position) => {
 
             //two hours
             time = currentTime + 2;
+			if(time > 23){time-=24}
             timing = getTime(time);
             day = getDay(time);
             icon = "https:" + day.hour[time].condition.icon;
@@ -60,6 +62,7 @@ const success = (position) => {
 
             //three hours
             time = currentTime + 3;
+			if(time > 23){time-=24}
             timing = getTime(time);
             day = getDay(time);
             icon = "https:" + day.hour[time].condition.icon;
@@ -72,6 +75,7 @@ const success = (position) => {
 
             //four hours
             time = currentTime + 4;
+			if(time > 23){time-=24}
             timing = getTime(time);
             day = getDay(time);
             icon = "https:" + day.hour[time].condition.icon;
